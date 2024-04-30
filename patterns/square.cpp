@@ -46,31 +46,49 @@ int main()
 
         cout << "Enter pattern to print: " << endl;
         cin >> n;
-        // printPattern1(n);
-        // printPattern2(n);
-        // printPattern3(n);
-        // printPattern4(n);
-        // printPattern5(n);
-        // printPattern6(n);
-        // printPattern7(n);
-        // printPattern8(n);
-        // printPattern9(n);
-        // printPattern10(n);
-        // printPattern11(n);
-        // printPattern12(n);
-        // printPattern13(n);
-        // printPattern14(n);
-        // printPattern15(n);
-        // printPattern16(n);
-        // printPattern17(n);
-        // printPattern18(n);
-        // printPattern19(n);
-        // printPattern20(n);
-        // printPattern21(n);
+        printPattern1(n);
+        cout << endl;
+        printPattern2(n);
+        cout << endl;
+        printPattern3(n);
+        cout << endl;
+        printPattern4(n);
+        cout << endl;
+        printPattern5(n);
+        cout << endl;
+        printPattern6(n);
+        cout << endl;
+        printPattern7(n);
+        cout << endl;
+        printPattern8(n);
+        cout << endl;
+        printPattern9(n);
+        cout << endl;
+        printPattern10(n);
+        cout << endl;
+        printPattern11(n);
+        cout << endl;
+        printPattern12(n);
+        cout << endl;
+        printPattern13(n);
+        cout << endl;
+        printPattern14(n);
+        cout << endl;
+        printPattern15(n);
+        cout << endl;
+        printPattern16(n);
+        cout << endl;
+        printPattern17(n);
+        cout << endl;
+        printPattern18(n);
+        cout << endl;
+        printPattern19(n);
+        cout << endl;
+        printPattern20(n);
+        cout << endl;
+        printPattern21(n);
+        cout << endl;
         printPattern22(n);
-
-        cout << endl
-             << endl;
     }
 }
 
