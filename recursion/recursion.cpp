@@ -1,4 +1,5 @@
 #include <iostream>
+#include <array>
 
 using namespace std;
 
@@ -8,6 +9,10 @@ void backtrack_1_to_n(int n);
 void backtrack_n_to_1(int i, int n);
 int sum_of_n_numbers(int n);
 int factorial(int n);
+void print_array(int[], int);
+void reverse_array(int, int array[], int);
+void palindrome();
+bool check_chars(int, string);
 
 int main()
 {
@@ -16,6 +21,7 @@ int main()
 
     // variables
     int sum;
+    int numbers[] = {1, 2, 3, 4, 5, 6, 7};
 
     // print_1_to_n(1, 5);
     // print_1_to_n(1, 5);
@@ -23,9 +29,13 @@ int main()
     // backtrack_1_to_n(5);
     // backtrack_n_to_1(1, 5);
     // sum = sum_of_n_numbers(3);
-    sum = factorial(5);
+    // sum = factorial(5);
+    // reverse_array(0, numbers, 7 - 1);
+    palindrome();
 
-    cout << sum << endl;
+    // cout << sum << endl;
+
+    // print_array(numbers, 7);
 
     return 0;
 }
@@ -82,18 +92,67 @@ void backtrack_n_to_1(int i, int n)
     cout << i << endl;
 }
 
-int sum_of_n_numbers(int n){
-    if(n == 0){
+int sum_of_n_numbers(int n)
+{
+    if (n == 0)
+    {
         return 0;
     }
     return n + sum_of_n_numbers(n - 1);
 }
 
-int factorial(int n){
+int factorial(int n)
+{
     // base case
-    if(n == 0)
+    if (n == 0)
         return 1;
-    
+
     // recursive call
     return n * factorial(n - 1);
+}
+
+void print_array(int numbers[], int size)
+{
+    // short form of iterator used to print the number
+    for (int i = 0; i < size; i++)
+    {
+        cout << numbers[i] << " ";
+    }
+}
+
+void reverse_array(int index, int array[], int size)
+{
+    // base case
+    if (index >= size/2)
+        return;
+
+    // swap the array elements
+    // int temp = array[index];
+    // array[index] = array[size];
+    // array[size] = temp;
+    swap(array[index], array[size]);
+
+    // recursive call
+    reverse_array(index + 1, array, size - 1);
+}
+
+bool check_polindrome(int index, string s){
+    // base case
+    if (index >= s.size()/2)
+        return true;
+
+    // recursive call
+    if (s[index]!= s[s.size() - 1 - index])
+        return false;
+
+    return check_polindrome(index + 1, s);
+}
+
+void palindrome(){
+    // title of the file
+    cout << "Palindrome:" << endl;
+
+    string s = "malayalam";
+
+    cout << s << (check_polindrome(0, s) ? " is ": " isn't ") << "a palindrome"  << endl;
 }
