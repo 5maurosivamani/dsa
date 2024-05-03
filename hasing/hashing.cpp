@@ -7,14 +7,18 @@ void hash_map();
 void printArray(int[], int);
 void hash_map_string();
 void hash_map_string_2();
+void map_numbers();
+void map_string();
 
 int main()
 {
     cout << "Hashing..." << endl;
 
     // hash_map();
-    hash_map_string();
+    // hash_map_string();
     // hash_map_string_2();
+    // map_numbers();
+    map_string();
 }
 
 void hash_map()
@@ -95,4 +99,46 @@ void hash_map_string_2()
     cout << 'o' << " is " << hashMap['o'] << "times" << endl;
     cout << 'l' << " is " << hashMap['l'] << "times" << endl;
     cout << 'h' << " is " << hashMap['h'] << "times" << endl;
+}
+
+// hashmap
+void map_numbers()
+{
+    // title of the program
+    cout << "Hash Map for numbers using map" << endl;
+
+    // variables
+    unordered_map<int, int> hashMap;
+    int numbers[] = {1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 2, 3, 4};
+
+    // iterate over the numbers
+    for (int i : numbers)
+        hashMap[i]++;
+
+    // iterate the hash map
+    for (auto it : hashMap)
+        cout << it.first << " is " << it.second << "times" << endl;
+}
+
+// hash map for string using map
+void map_string()
+{
+    // title of the program
+    cout << "Hash Map for string using map" << endl;
+
+    // variables
+    string s = "Hello guys, we are happy today!";
+    unordered_map<char, int> mpp;
+
+    // iterate over the string
+    for (char it : s)
+        mpp[it]++;
+
+    // iterate the hash map
+    // for (auto it : mpp)
+    //     cout << it.first << " is " << it.second << "times" << endl;
+
+    // query the hash map
+    cout << "space is " << mpp[' '] << " times" << endl;
+    cout << "p is " << mpp['h'] << " times" << endl;
 }

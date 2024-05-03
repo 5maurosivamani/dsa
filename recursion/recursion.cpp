@@ -12,7 +12,8 @@ int factorial(int n);
 void print_array(int[], int);
 void reverse_array(int, int array[], int);
 void palindrome();
-bool check_chars(int, string);
+bool check_polindrome(int, string);
+int fibonacci(int);
 
 int main()
 {
@@ -20,7 +21,7 @@ int main()
     cout << "Recursion:" << endl;
 
     // variables
-    int sum;
+    int sum, res;
     int numbers[] = {1, 2, 3, 4, 5, 6, 7};
 
     // print_1_to_n(1, 5);
@@ -31,9 +32,11 @@ int main()
     // sum = sum_of_n_numbers(3);
     // sum = factorial(5);
     // reverse_array(0, numbers, 7 - 1);
-    palindrome();
+    // palindrome();
+    res = fibonacci(7);
 
     // cout << sum << endl;
+    cout << "Fibonacci of " << 7 << " is: " << res << endl;
 
     // print_array(numbers, 7);
 
@@ -123,7 +126,7 @@ void print_array(int numbers[], int size)
 void reverse_array(int index, int array[], int size)
 {
     // base case
-    if (index >= size/2)
+    if (index >= size / 2)
         return;
 
     // swap the array elements
@@ -136,23 +139,35 @@ void reverse_array(int index, int array[], int size)
     reverse_array(index + 1, array, size - 1);
 }
 
-bool check_polindrome(int index, string s){
+bool check_polindrome(int index, string s)
+{
     // base case
-    if (index >= s.size()/2)
+    if (index >= s.size() / 2)
         return true;
 
     // recursive call
-    if (s[index]!= s[s.size() - 1 - index])
+    if (s[index] != s[s.size() - 1 - index])
         return false;
 
     return check_polindrome(index + 1, s);
 }
 
-void palindrome(){
+void palindrome()
+{
     // title of the file
     cout << "Palindrome:" << endl;
 
     string s = "malayalam";
 
-    cout << s << (check_polindrome(0, s) ? " is ": " isn't ") << "a palindrome"  << endl;
+    cout << s << (check_polindrome(0, s) ? " is " : " isn't ") << "a palindrome" << endl;
+}
+
+int fibonacci(int n)
+{
+    // base case
+    if (n < 2)
+        return n;
+
+    // multiple recursive calls
+    return fibonacci(n - 1) + fibonacci(n - 2);
 }
