@@ -15,6 +15,7 @@ int main()
     // variables
     int n = 10,
         numbers[n] = {2, 1, 4, 54, 10, 34, 23, 29, 9, 40};
+    // numbers[n] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     // selection_sort(n, numbers);
     bubble_sort(n, numbers);
@@ -78,11 +79,7 @@ void selection_sort(int n, int numbers[])
     }
 
     // print the sorted array
-    for (int i = 0; i < n; i++)
-    {
-        cout << numbers[i] << " ";
-    }
-    cout << endl;
+    printArray(numbers, n);
 }
 
 void bubble_sort(int n, int numbers[])
@@ -94,6 +91,8 @@ void bubble_sort(int n, int numbers[])
 
     for (int i = 0; i < n - 1; i++)
     {
+        bool didSwap = false;
+
         for (int j = 0; j < n - i - 1; j++)
         {
             if (numbers[j] > numbers[j + 1])
@@ -101,8 +100,13 @@ void bubble_sort(int n, int numbers[])
                 int temp = numbers[j];
                 numbers[j] = numbers[j + 1];
                 numbers[j + 1] = temp;
+
+                didSwap = true;
             }
         }
+
+        if (!didSwap)
+            break;
     }
 
     cout << endl;
