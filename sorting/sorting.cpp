@@ -3,8 +3,10 @@
 using namespace std;
 
 void header(string, char);
+void printArray(int[], int);
 
 void selection_sort(int, int[]);
+void bubble_sort(int, int[]);
 
 int main()
 {
@@ -14,7 +16,43 @@ int main()
     int n = 10,
         numbers[n] = {2, 1, 4, 54, 10, 34, 23, 29, 9, 40};
 
-    selection_sort(n, numbers);
+    // selection_sort(n, numbers);
+    bubble_sort(n, numbers);
+}
+
+void header(string text, char patten)
+{
+    // variables
+    int text_size = text.size();
+    int rowSpace = 1, columnSpace = 5;
+    int row = 3 + rowSpace * 2;
+    int column = text_size + 2 + columnSpace * 2;
+
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < column; j++)
+        {
+            if (i == 0 || i == row - 1 || j == 0 || j == column - 1)
+                cout << patten << " ";
+            else if (i == row / 2 && j > columnSpace && j <= text_size + columnSpace)
+            {
+
+                cout << text[j - (columnSpace + 1)] << " ";
+            }
+            else
+                cout << "  ";
+        }
+
+        cout << endl;
+    }
+}
+
+void printArray(int array[], int size)
+{
+    cout << "[";
+    for (int i = 0; i < size; i++)
+        cout << array[i] << ((i != size - 1) ? ", " : "");
+    cout << "]";
 }
 
 void selection_sort(int n, int numbers[])
@@ -47,29 +85,28 @@ void selection_sort(int n, int numbers[])
     cout << endl;
 }
 
-void header(string text, char patten)
+void bubble_sort(int n, int numbers[])
 {
-    // variables
-    int text_size = text.size();
-    int rowSpace = 1, columnSpace = 5;
-    int row = 3 + rowSpace * 2;
-    int column = text_size + 2 + columnSpace * 2;
+    header("Bubble Sort", '*');
 
-    for (int i = 0; i < row; i++)
+    // print the sorted array
+    printArray(numbers, n);
+
+    for (int i = 0; i < n - 1; i++)
     {
-        for (int j = 0; j < column; j++)
+        for (int j = 0; j < n - i - 1; j++)
         {
-            if (i == 0 || i == row - 1 || j == 0 || j == column - 1)
-                cout << "* ";
-            else if (i == row / 2 && j > columnSpace && j <= text_size + columnSpace)
+            if (numbers[j] > numbers[j + 1])
             {
-
-                cout << text[j - (columnSpace + 1)] << " ";
+                int temp = numbers[j];
+                numbers[j] = numbers[j + 1];
+                numbers[j + 1] = temp;
             }
-            else
-                cout << "  ";
         }
-
-        cout << endl;
     }
+
+    cout << endl;
+
+    // print the sorted array
+    printArray(numbers, n);
 }
