@@ -7,6 +7,7 @@ void printArray(int[], int);
 
 void selection_sort(int, int[]);
 void bubble_sort(int, int[]);
+void insertion_sort(int, int[]);
 
 int main()
 {
@@ -18,7 +19,8 @@ int main()
     // numbers[n] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     // selection_sort(n, numbers);
-    bubble_sort(n, numbers);
+    // bubble_sort(n, numbers);
+    insertion_sort(n, numbers);
 }
 
 void header(string text, char patten)
@@ -53,7 +55,7 @@ void printArray(int array[], int size)
     cout << "[";
     for (int i = 0; i < size; i++)
         cout << array[i] << ((i != size - 1) ? ", " : "");
-    cout << "]";
+    cout << "]" << endl;
 }
 
 void selection_sort(int n, int numbers[])
@@ -110,6 +112,33 @@ void bubble_sort(int n, int numbers[])
     }
 
     cout << endl;
+
+    // print the sorted array
+    printArray(numbers, n);
+}
+
+void insertion_sort(int n, int numbers[])
+{
+    header("Insertion Sort", '*');
+
+    // print the unsorted array
+    printArray(numbers, n);
+
+    // insertion sort
+    for (int i = 1; i < n; i++)
+    {
+        for (int j = i; j > 0; j--)
+        {
+            if (numbers[j] < numbers[j - 1])
+            {
+                int temp = numbers[j];
+                numbers[j] = numbers[j - 1];
+                numbers[j - 1] = temp;
+            }
+            else
+                break;
+        }
+    }
 
     // print the sorted array
     printArray(numbers, n);
