@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <vector>
 
 using namespace std;
 
@@ -8,6 +9,9 @@ void printArray(int[], int);
 void selection_sort(int, int[]);
 void bubble_sort(int, int[]);
 void insertion_sort(int, int[]);
+void merge_sort(int n, int[]);
+void quick_sort(int[], int, int);
+void swap(int[], int, int);
 
 int main()
 {
@@ -20,7 +24,12 @@ int main()
 
     // selection_sort(n, numbers);
     // bubble_sort(n, numbers);
-    insertion_sort(n, numbers);
+    // insertion_sort(n, numbers);
+    // merge_sort(n, numbers);
+    printArray(numbers, 10);
+    quick_sort(numbers, 0, n - 1);
+    // print the array
+    printArray(numbers, 10);
 }
 
 void header(string text, char patten)
@@ -142,4 +151,137 @@ void insertion_sort(int n, int numbers[])
 
     // print the sorted array
     printArray(numbers, n);
+}
+
+void merge(int *numbers, int low, int mid, int high)
+{
+    // variables
+    vector<int> tmp;
+    // poiters
+    int left = low, right = mid + 1;
+
+    // merge the two halves
+    while (left <= mid && right <= high)
+    {
+        if (numbers[left] < numbers[right])
+        {
+            tmp.push_back(numbers[left]);
+            left++;
+        }
+        else
+        {
+            tmp.push_back(numbers[right]);
+            right++;
+        }
+    }
+
+    // add the remaining elements on the left
+    while (left <= mid)
+    {
+        tmp.push_back(numbers[left]);
+        left++;
+    }
+
+    // add the remaining elements on the right
+    while (right <= high)
+    {
+        tmp.push_back(numbers[right]);
+        right++;
+    }
+
+    // re-arrange the order on the original array
+    for (int i = low; i <= high; i++)
+    {
+        numbers[i] = tmp[i];
+
+        cout << "i is " << i << " ";
+    }
+
+    cout << endl;
+}
+
+// merge algo
+void merge_algo(int *numbers, int low, int high)
+{
+    // base case
+    if (low == high)
+        return;
+
+    // find the mid point
+    int mid = (low + high) / 2;
+
+    merge_algo(numbers, low, mid);
+    merge_algo(numbers, mid + 1, high);
+
+    // merge the two halves
+    merge(numbers, low, mid, high);
+}
+
+void merge_sort(int n, int *numbers)
+{
+    // header
+    header("Merge Sort", '*');
+
+    // print the unsorted array
+    printArray(numbers, n);
+
+    merge_algo(numbers, 0, n - 1);
+
+    // print the sorted array
+    printArray(numbers, n);
+}
+
+// quick sort
+void quick_sort(int *numbers, int low, int high)
+{
+    // base case
+    if (low >= high)
+    {
+        return;
+    }
+
+    // find the mid point of the array
+    int mid = (low + high) / 2;
+
+    // choose the pivot element as a mid
+    int pivot = numbers[mid];
+
+    // move the pivot to the end
+    swap(numbers, mid, high);
+
+    int i = 0, j = 0;
+    bool pause = false;
+
+    while (i <= high)
+    {
+        if (numbers[i] < pivot)
+        {
+            if (pause)
+            {
+                swap(numbers, i, j);
+                pause = false;
+            }
+            i++;
+            j++;
+        }
+        else
+        {
+            pause = true;
+            i++;
+        }
+    }
+
+    // swap the pivot
+    swap(numbers, j, high);
+
+    quick_sort(numbers, low, j);
+    quick_sort(numbers, j + 1, high);
+}
+
+void swap(int *array, int left, int right)
+{
+    // swap code
+    int temp = array[left];
+    array[left] = array[right];
+    array[right] = temp;
 }
